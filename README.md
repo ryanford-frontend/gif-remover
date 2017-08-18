@@ -1,3 +1,3 @@
-#### Gif Remover for Gitter
+### Gif Remover for Gitter
 
-### Save ram, remove distractions.
+#### Save ram, remove distractions.
