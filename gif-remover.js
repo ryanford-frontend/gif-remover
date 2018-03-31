@@ -1,16 +1,17 @@
 // ==UserScript==
-// @name        Gif Remover for Gitter 
+// @name        Gif Remover for Gitter
 // @namespace   https://github.com/ryanford-frontend/gif-remover
 // @description Remove gifs from Gitter
-// @match       *.gitter.im/*
-// @version     0.0.1
+// @match       *.gitter.im/*/*/~chat*
+// @version     0.0.2
 // @license     https://opensource.org/licenses/MIT
 // ==/UserScript==
 
-let imgs = [];
+const chatContainer = document.getElementById('chat-container').firstChild;
+const config = { childList: true };
 
-function findGifs() {
-  imgs = document.querySelectorAll("img");
+const findGifs = (mutations) => {
+  let imgs = document.querySelectorAll("img");
 
   imgs.forEach((img) => {
     if (img.src.substr(-3) == "gif") {
@@ -19,6 +20,7 @@ function findGifs() {
       parent.textContent = "Gif removed";
     }
   });
-}
+};
 
-window.addEventListener("DOMNodeInserted", findGifs);
+const gifRemover = new MutationObserver(findGifs);
+gifRemover.observe(chatContainer, config);
