@@ -14,7 +14,7 @@ const findGifs = (mutations) => {
   let imgs = document.querySelectorAll("img");
 
   imgs.forEach((img) => {
-    if (img.src.substr(-3) == "gif") {
+    if (img.src.match(".gif")) {
       let parent = img.parentNode;
       parent.removeChild(img);
       parent.textContent = "Gif removed";
